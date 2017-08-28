@@ -4,3 +4,5 @@
 其中的依赖Cordova-lib需要修改文件才能正确使用打包功能
 
 [demo](https://dev.bokesoft.com/yigomobile/main)
+
+cordova-lib 6.0.0
