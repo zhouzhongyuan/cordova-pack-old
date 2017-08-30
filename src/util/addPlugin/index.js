@@ -43,7 +43,7 @@ function addPlugin(appPlugin){
                     //toJson
                     var variable = {};
                     variable.cli_variables = {};
-                    _.each(pluginVariable.split('&'),function(v){
+                    pluginVariable.split('&').forEach(function(v){
                         variable.cli_variables[v.split('=')[0]] = v.split('=')[1];
                     });
                     console.log((pluginName,variable));

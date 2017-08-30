@@ -56,8 +56,7 @@
     "plist": "^1.2.0",
     "pug": "^2.0.0-alpha7",
     "qrcode": "^0.4.2",
-    "svn-spawn": "^0.1.5",
-    "underscore": "^1.8.3"
+    "svn-spawn": "^0.1.5"
   },
   "description": "其中的依赖Cordova-lib需要修改文件才能正确使用打包功能",
   "devDependencies": {
