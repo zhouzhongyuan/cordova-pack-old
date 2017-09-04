@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import co from 'co';
 import fs from 'fs-extra';
 import plistGen from './plistGen.js';
 import htmlGen from './htmlGen.js';
