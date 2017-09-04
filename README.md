@@ -15,3 +15,17 @@ npm run build
 
 ## version
 cordova-lib 6.0.0
+
+## Change
+
+svn-spawn:
+为了在checkout的时候，不显示file list
+```
+params = [params, '.'];
+
+```
+to
+```
+params = [params, '.', '-q'];
+
+```
