@@ -54,30 +54,30 @@ function pack(cfg){
     o.androidTargetSdkVersion = cfg.androidTargetSdkVersion;
 
 
-    o.build = function(){
-        return co(function*(){
+    o.build = async function(){
+        // return async function(){
             cfg.winston.info("pack enviroment initializing......")
-            yield preparePack();
-            yield emptyDir('working');
+            await preparePack();
+            await emptyDir('working');
             process.chdir('working');
             cfg.winston.info("pack enviroment initialize success")
             cfg.winston.info("create cordova begin")
-            yield createCordova(o.appName, o.appNameSpace);
+            await createCordova(o.appName, o.appNameSpace);
             cfg.winston.info("create cordova success")
-            yield processCode(o.configXML, o.appVersion, o.appPackageName, o.appName, o.appDescription, o.appIcon, o.androidTargetSdkVersion, o.appBuildType, o.appPlatform);
+            await processCode(o.configXML, o.appVersion, o.appPackageName, o.appName, o.appDescription, o.appIcon, o.androidTargetSdkVersion, o.appBuildType, o.appPlatform);
             var yigoVersion = o.yigoVersion || 1.6;
             switch (yigoVersion){
                 case 1.6:
                     //Yigo 1.6
                     cfg.winston.info("svn checkout app files begin")
-                    yield emptyDir(o.svnDir);
-                    yield getSvn(o.baseSvn,o.svnDir, 'zhouzy','zhouzy');
+                    await emptyDir(o.svnDir);
+                    await getSvn(o.baseSvn,o.svnDir, 'zhouzy','zhouzy');
                     cfg.winston.info("svn checkout app files success")
                     cfg.winston.info("svn checkout project files begin")
-                    yield emptyDir(o.projectDir);
-                    yield getSvn(o.projectSvn, o.projectDir,  o.projectSvnUser, o.projectSvnPassword);
+                    await emptyDir(o.projectDir);
+                    await getSvn(o.projectSvn, o.projectDir,  o.projectSvnUser, o.projectSvnPassword);
                     cfg.winston.info("svn checkout project files success")
-                    yield changelibConfigJSPath(o.libConfigJSPath, projectDirName(o.projectSvn));
+                    await changelibConfigJSPath(o.libConfigJSPath, projectDirName(o.projectSvn));
                     break;
                 case 2:
                     //Yigo 2.0
@@ -85,30 +85,30 @@ function pack(cfg){
                     var options = {cwd:'src'};
                     //get source code
                     cfg.winston.info("download source code begin")
-                    yield emptyDir('src');
-                    yield getSvn(o.baseSvn,'src', 'zhouzy','zhouzy');
+                    await emptyDir('src');
+                    await getSvn(o.baseSvn,'src', 'zhouzy','zhouzy');
                     cfg.winston.info("download source code success");
                     //npm install
-                    yield emptyDir(o.svnDir);
-                    yield npmCmd(['install'], options);
+                    await emptyDir(o.svnDir);
+                    await npmCmd(['install'], options);
                     //npm run build
                     options.env = {
                         DEST_DIR:`../${o.appName}/www`
                     };
-                    yield npmCmd(['run','build'], options);
+                    await npmCmd(['run','build'], options);
                     break;
                 default:
                     cfg.winston.info(`NOT SUPPORT Yigo${yigoVersion}`);
             }
             process.chdir(o.appName);
-            yield addPlatform(o.appPlatform);
-            yield addPlugin(o.appPlugin);
+            await addPlatform(o.appPlatform);
+            await addPlugin(o.appPlugin);
             if(o.appPlatform === 'android'){
-                yield buildExtras(); //android
+                await buildExtras(); //android
             }
-            yield addKey(o.appIosMp);
-            yield buildApp(o.platform, o.appBuildType);
-            yield releaseFile(o.platform, o.appPlugin,o.appBuildType, o.apkLink, o.ipaLink, o.appName);
+            await addKey(o.appIosMp);
+            await buildApp(o.platform, o.appBuildType);
+            await releaseFile(o.platform, o.appPlugin,o.appBuildType, o.apkLink, o.ipaLink, o.appName);
             if(o.appPlatform === 'ios'){
                 var dest = o.ipaLink;
                 var reg = new RegExp('^(.+)\/(?:[^/]+)$');
@@ -117,16 +117,15 @@ function pack(cfg){
                 var ipaUrl = `${SERVER}yigomobile/public/ios/${o.id}/${o.appName}-${o.appBuildType}.ipa`;
                 var plistUrl = `${SERVER}yigomobile/public/ios/${o.id}/manifest.plist`;
                 var pageUrl = `${SERVER}yigomobile/public/ios/${o.id}/index.html`;
-                yield plistGen(o,ipaUrl);
-                yield htmlGen(plistUrl, o.appName,pageUrl);
+                await plistGen(o,ipaUrl);
+                await htmlGen(plistUrl, o.appName,pageUrl);
                 fs.copySync('manifest.plist', dest+'/manifest.plist');
                 fs.copySync('index.html', dest+'/index.html');
             }
 
             process.chdir('../..');
-            yield emptyDir('working');
-            return o;
-        })
+            await emptyDir('working');
+        // }
     };
 
     return o;
