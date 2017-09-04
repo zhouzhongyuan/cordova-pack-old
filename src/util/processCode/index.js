@@ -12,8 +12,6 @@ function processCode(configXML, appVersion, appPackageName, appName, appDescript
         if (appDescription) conf.setDescription(appDescription);
         //TODO icon
         var icons = conf.getIcons(appPlatform);
-        console.log('icons');
-        console.log(appIcon);
         if(appIcon){
             conf.addElement('icon',{'src':appIcon});
         }

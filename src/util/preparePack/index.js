@@ -1,7 +1,6 @@
 function preparePack(){
     return new Promise(function(resolve,reject){
         var cwd = process.cwd().split('/');
-        console.log(cwd);
         var parentDir = cwd[cwd.length - 2].toString();
 
         if(parentDir == 'working'){

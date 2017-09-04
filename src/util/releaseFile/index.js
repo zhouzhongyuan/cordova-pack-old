@@ -8,11 +8,9 @@ function releaseFile(platform, appPlugin,appBuildType, apkLink, ipaLink, appName
             case 'android':
                 var isCrosswalk = /crosswalk/;
                 if( isCrosswalk.test(appPlugin.toString()) ){
-                    console.log('crosswalk');
                     src = ['platforms/android/build/outputs/apk/android-armv7-',appBuildType,'.apk'].join('');
 
                 }else{
-                    console.log(' no crosswalk');
                     src = ['platforms/android/build/outputs/apk/android-',appBuildType,'.apk'].join('');
                 }
                 dest = apkLink;
