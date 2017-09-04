@@ -1,0 +1,132 @@
+{
+  "_args": [
+    [
+      {
+        "name": "phonegap-plugin-barcodescanner",
+        "raw": "phonegap-plugin-barcodescanner",
+        "rawSpec": "",
+        "scope": null,
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/bokeadmin/project/del"
+    ]
+  ],
+  "_from": "phonegap-plugin-barcodescanner@latest",
+  "_id": "phonegap-plugin-barcodescanner@6.0.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/phonegap-plugin-barcodescanner",
+  "_nodeVersion": "4.2.2",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/phonegap-plugin-barcodescanner-6.0.4.tgz_1480878627636_0.5798714745324105"
+  },
+  "_npmUser": {
+    "email": "eddyverbruggen@gmail.com",
+    "name": "eddyverbruggen"
+  },
+  "_npmVersion": "2.14.7",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "phonegap-plugin-barcodescanner",
+    "raw": "phonegap-plugin-barcodescanner",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/phonegap-plugin-barcodescanner/-/phonegap-plugin-barcodescanner-6.0.4.tgz",
+  "_shasum": "3b40f4ca41dc180387993be7a7647552326d83d1",
+  "_shrinkwrap": null,
+  "_spec": "phonegap-plugin-barcodescanner",
+  "_where": "/Users/bokeadmin/project/del",
+  "author": {
+    "name": "Adobe PhoneGap Team"
+  },
+  "bugs": {
+    "url": "https://github.com/phonegap/phonegap-plugin-barcodescanner/issues"
+  },
+  "cordova": {
+    "id": "phonegap-plugin-barcodescanner",
+    "platforms": [
+      "ios",
+      "android",
+      "windows",
+      "wp8",
+      "blackberry10",
+      "browser"
+    ]
+  },
+  "dependencies": {},
+  "description": "You can use the BarcodeScanner plugin to scan different types of barcodes (using the device's camera) and get the metadata encoded in them for processing within your application.",
+  "devDependencies": {
+    "jasmine-node": "1.14.5",
+    "pluginpub": "^0.0.5"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "3b40f4ca41dc180387993be7a7647552326d83d1",
+    "tarball": "https://registry.npmjs.org/phonegap-plugin-barcodescanner/-/phonegap-plugin-barcodescanner-6.0.4.tgz"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "gitHead": "cdab6134b922359788c6d9e4bf623a2dd61611d5",
+  "homepage": "https://github.com/phonegap/phonegap-plugin-barcodescanner#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "ecosystem:phonegap",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-windows",
+    "cordova-wp8",
+    "cordova-blackberry10",
+    "cordova-browser",
+    "cordova:plugin"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "email": "eddyverbruggen@gmail.com",
+      "name": "eddyverbruggen"
+    },
+    {
+      "email": "kotikov.vladimir@gmail.com",
+      "name": "kotikov.vladimir"
+    },
+    {
+      "email": "simon.macdonald@gmail.com",
+      "name": "macdonst"
+    },
+    {
+      "email": "stevengill97@gmail.com",
+      "name": "stevegill"
+    },
+    {
+      "email": "npmjs@barhams.info",
+      "name": "timbarham"
+    },
+    {
+      "email": "timothy.windsor@gmail.com",
+      "name": "timwindsor"
+    }
+  ],
+  "name": "phonegap-plugin-barcodescanner",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phonegap/phonegap-plugin-barcodescanner.git"
+  },
+  "scripts": {
+    "test": "jasmine-node --color spec"
+  },
+  "version": "6.0.4"
+}

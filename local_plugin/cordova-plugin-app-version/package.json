@@ -1,0 +1,56 @@
+{
+  "name": "cordova-plugin-app-version",
+  "version": "0.1.8",
+  "description": "Cordova plugin to return the version number of the current app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whiteoctober/cordova-plugin-app-version.git"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "app",
+    "version",
+    "appversion",
+    "plugin"
+  ],
+  "author": {
+    "name": "whiteoctober"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whiteoctober/cordova-plugin-app-version/issues"
+  },
+  "homepage": "https://github.com/whiteoctober/cordova-plugin-app-version#readme",
+  "gitHead": "e83ffcaefd385d23803938d36b36afaf51f3a0d4",
+  "_id": "cordova-plugin-app-version@0.1.8",
+  "_shasum": "d18e3efb510c6dd90afd49627fa07027285b4c07",
+  "_from": "cordova-plugin-app-version@>=0.1.8 <0.2.0",
+  "_npmVersion": "2.14.4",
+  "_nodeVersion": "0.12.7",
+  "_npmUser": {
+    "name": "whiteoctober",
+    "email": "info@whiteoctober.co.uk"
+  },
+  "dist": {
+    "shasum": "d18e3efb510c6dd90afd49627fa07027285b4c07",
+    "tarball": "http://registry.npmjs.org/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.8.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "maistho",
+      "email": "maistho@gmail.com"
+    },
+    {
+      "name": "whiteoctober",
+      "email": "info@whiteoctober.co.uk"
+    }
+  ],
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.8.tgz",
+  "readme": "# Cordova AppVersion plugin\n\nReads the version of your app from the target build settings.\n\n## Installation\n\n### With cordova-cli\n\nIf you are using [cordova-cli](https://github.com/apache/cordova-cli), install\nwith:\n\n    cordova plugin add cordova-plugin-app-version\n\n### With plugman\n\nWith a plain [plugman](https://github.com/apache/cordova-plugman), you should be\nable to install with something like:\n\n    plugman --platform <ios|android> --project <directory> --plugin https://github.com/whiteoctober/cordova-plugin-app-version.git\n\n### Manually in iOS\n\nTODO: Write these instructions\n\n### Manually in Android\n\nTODO: Write these instructions\n\n## Use from Javascript\n\nIf you are using jQuery, AngularJS, WinJS or any Promise/A library (Bluebird), promise style is supported. Use something like:\n\n    cordova.getAppVersion.getVersionNumber().then(function (version) {\n        $('.version').text(version);\n    });\n\nIf not, pass a callback function:\n\n    cordova.getAppVersion.getVersionNumber(function (version) {\n        alert(version);\n    });\n\nIn addition to the version number you can also retrieve other details about your application:\n\n### getAppName\n\nReturns the name of the app. E.g. \"My Awesome App\"\n\n### getPackageName\n\nReturns the package name of the app - the reversed domain name app identifier like com.example.myawesomeapp\n\n### getVersionCode\n\nReturns the build identifier of the app\n\n### getVersionNumber\n\nReturns the version number of the app\n\n## Credits\n\nWritten by [Robert (Jamie) Munro](http://twitter.com/rjmunro) at\n[White October](http://whiteoctober.co.uk/)\n\nVarious others have contributed fixes and new features. See the CHANGELOG.md for details.\n\nOriginal code based on the following Stack Overflow posts:\n\n* [iOS](http://stackoverflow.com/a/14713364/3408)\n* [Android](http://stackoverflow.com/a/3637686/3408)\n",
+  "readmeFilename": "README.md"
+}

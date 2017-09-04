@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-plugin-baidu-push"
+  version="1.0.0">
+  <name>BaiduPush</name>
+
+  <js-module src="www/baidu_push.js" name="baidu_push">
+    <clobbers target="baidu_push" />
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+    <hook type="after_plugin_add" src="scripts/android-install.js" />
+    <hook type="after_plugin_install" src="scripts/android-install.js" />
+    <hook type="before_plugin_rm" src="scripts/android-install.js" />
+    <hook type="before_plugin_uninstall" src="scripts/android-install.js" />
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="BaiduPush">
+        <param name="android-package" value="com.qdc.plugins.baidu.BaiduPush" />
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <!-- Push service 运行需要的权限 -->
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+      <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+      <uses-permission android:name="android.permission.VIBRATE" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+      <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+      <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    </config-file>
+
+    <!--<config-file target="AndroidManifest.xml" parent="/manifest/*">
+      <application android:name="com.baidu.frontia.FrontiaApplication" android:hardwareAccelerated="true" android:icon="@drawable/icon" android:label="@string/app_name" android:supportsRtl="true">
+      </application>
+    </config-file>-->
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+
+      <!-- push service start -->
+      <!-- 用于接收系统消息以保证PushService正常运行 -->
+      <receiver android:name="com.baidu.android.pushservice.PushServiceReceiver" android:process=":bdservice_v1">
+        <intent-filter>
+          <action android:name="android.intent.action.BOOT_COMPLETED" />
+          <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+          <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+          <action android:name="com.baidu.android.pushservice.action.media.CLICK" />
+          <!-- 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+          <action android:name="android.intent.action.MEDIA_MOUNTED" />
+          <action android:name="android.intent.action.USER_PRESENT" />
+          <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+          <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+        </intent-filter>
+      </receiver>
+      <!-- Push服务接收客户端发送的各种请求-->
+      <receiver android:name="com.baidu.android.pushservice.RegistrationReceiver" android:process=":bdservice_v1">
+        <intent-filter>
+          <action android:name="com.baidu.android.pushservice.action.METHOD" />
+          <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+        </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.PACKAGE_REMOVED" />
+          <data android:scheme="package" />
+        </intent-filter>
+      </receiver>
+      <service android:name="com.baidu.android.pushservice.PushService" android:exported="true" android:process=":bdservice_v1">
+        <intent-filter>
+            <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
+        </intent-filter>
+      </service>
+      <!-- 4.4版本新增的CommandService声明，提升小米和魅族手机上的实际推送到达率 -->
+      <service android:name="com.baidu.android.pushservice.CommandService" android:exported="true" />
+      <!-- push结束 -->
+      <!-- 此处Receiver名字修改为当前包名路径 -->
+      <receiver android:name="com.qdc.plugins.baidu.BaiduPushReceiver">
+        <intent-filter>
+          <!-- 接收push消息 -->
+          <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+          <!-- 接收bind、setTags等method的返回结果-->
+          <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+          <!-- 接收通知点击事件，和通知自定义内容 -->
+          <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
+        </intent-filter>
+      </receiver>
+    </config-file>
+
+    <source-file src="src/android/BaiduPush.java" target-dir="src/com/qdc/plugins/baidu" />
+    <source-file src="src/android/BaiduPushReceiver.java" target-dir="src/com/qdc/plugins/baidu" />
+    <source-file src="libs/android/armeabi/libbdpush_V2_2.so" target-dir="libs/armeabi" />
+    <source-file src="libs/android/armeabi/libbdpush_V2_2.so" target-dir="libs/armeabi-v7a" />
+    <source-file src="libs/android/mips/libbdpush_V2_2.so" target-dir="libs/mips" />
+    <source-file src="libs/android/pushservice-4.4.1.88.jar" target-dir="libs" />
+  </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="BaiduPush">
+                <param name="ios-package" value="BaiduPushPlugin"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/BaiduPushPlugin.h" />
+        <source-file src="src/ios/BaiduPushPlugin.m" />
+
+      <!-- Wechat Official -->
+      <header-file src="libs/ios/BPush.h" />
+      <source-file src="libs/ios/libBPush.a" framework="true" />
+
+      <!-- Other required frameworks -->
+      <framework src="libz.dylib" />
+      <framework src="Foundation.framework" />
+      <framework src="CoreTelephony.framework" />
+      <framework src="SystemConfiguration.framework" />
+
+    </platform>
+</plugin>

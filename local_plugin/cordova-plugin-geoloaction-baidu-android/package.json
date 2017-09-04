@@ -1,0 +1,91 @@
+{
+  "_args": [
+    [
+      {
+        "name": "cordova-plugin-geoloaction-baidu-android",
+        "raw": "cordova-plugin-geoloaction-baidu-android",
+        "rawSpec": "",
+        "scope": null,
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/bokeadmin/project/test"
+    ]
+  ],
+  "_from": "cordova-plugin-geoloaction-baidu-android@latest",
+  "_id": "cordova-plugin-geoloaction-baidu-android@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/cordova-plugin-geoloaction-baidu-android",
+  "_nodeVersion": "4.2.1",
+  "_npmOperationalInternal": {
+    "host": "packages-5-east.internal.npmjs.com",
+    "tmp": "tmp/cordova-plugin-geoloaction-baidu-android-1.0.0.tgz_1456379149388_0.5706183924339712"
+  },
+  "_npmUser": {
+    "email": "yawenzhongyuan@gmail.com",
+    "name": "zhongyuan"
+  },
+  "_npmVersion": "2.14.7",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "cordova-plugin-geoloaction-baidu-android",
+    "raw": "cordova-plugin-geoloaction-baidu-android",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-geoloaction-baidu-android/-/cordova-plugin-geoloaction-baidu-android-1.0.0.tgz",
+  "_shasum": "2e93652c330419bb906ec69efbc111450fe622ac",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-geoloaction-baidu-android",
+  "_where": "/Users/bokeadmin/project/test",
+  "author": {
+    "name": "Zhongyuan Zhou"
+  },
+  "bugs": {
+    "url": "https://github.com/zhouzhongyuan/cordova-plugin-geoloaction-baidu-android/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-geoloaction-baidu-android",
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "description": "cordova plugin geoloaction with baidu SDK for android only",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "2e93652c330419bb906ec69efbc111450fe622ac",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-geoloaction-baidu-android/-/cordova-plugin-geoloaction-baidu-android-1.0.0.tgz"
+  },
+  "gitHead": "de05d42fcb39c551d773a63dab021c60e2b906b8",
+  "homepage": "https://github.com/zhouzhongyuan/cordova-plugin-geoloaction-baidu-android#readme",
+  "keywords": [
+    "cordova",
+    "map",
+    "baidu",
+    "geolocation"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "email": "yawenzhongyuan@gmail.com",
+      "name": "zhongyuan"
+    }
+  ],
+  "name": "cordova-plugin-geoloaction-baidu-android",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhouzhongyuan/cordova-plugin-geoloaction-baidu-android.git"
+  },
+  "scripts": {},
+  "version": "1.0.0"
+}

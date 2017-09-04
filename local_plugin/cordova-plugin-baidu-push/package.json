@@ -1,0 +1,86 @@
+{
+  "_args": [
+    [
+      {
+        "name": "cordova-plugin-baidu-push",
+        "raw": "cordova-plugin-baidu-push",
+        "rawSpec": "",
+        "scope": null,
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/bokeadmin/project/del"
+    ]
+  ],
+  "_from": "cordova-plugin-baidu-push@latest",
+  "_id": "cordova-plugin-baidu-push@1.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/cordova-plugin-baidu-push",
+  "_nodeVersion": "6.2.2",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/cordova-plugin-baidu-push-1.0.2.tgz_1470878421478_0.8031557213980705"
+  },
+  "_npmUser": {
+    "email": "yawenzhongyuan@gmail.com",
+    "name": "zhongyuan"
+  },
+  "_npmVersion": "3.9.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "cordova-plugin-baidu-push",
+    "raw": "cordova-plugin-baidu-push",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-baidu-push/-/cordova-plugin-baidu-push-1.0.2.tgz",
+  "_shasum": "8794212e7a90811433368837326b4896d8287592",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-baidu-push",
+  "_where": "/Users/bokeadmin/project/del",
+  "author": {
+    "name": "zhongyuan"
+  },
+  "bugs": {
+    "url": "https://github.com/zhouzhongyuan/cordova-plugin-baidu-push/issues"
+  },
+  "dependencies": {},
+  "description": "baidu push",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "8794212e7a90811433368837326b4896d8287592",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-baidu-push/-/cordova-plugin-baidu-push-1.0.2.tgz"
+  },
+  "gitHead": "34ae40ab86de0a23c93dff5f20a4a1925a3b802c",
+  "homepage": "https://github.com/zhouzhongyuan/cordova-plugin-baidu-push#readme",
+  "keywords": [
+    "baidu",
+    "push"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "yawenzhongyuan@gmail.com",
+      "name": "zhongyuan"
+    }
+  ],
+  "name": "cordova-plugin-baidu-push",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhouzhongyuan/cordova-plugin-baidu-push.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.2"
+}
