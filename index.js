@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import fs from 'fs-extra';
+import path from 'path';
 import plistGen from './plistGen.js';
 import htmlGen from './htmlGen.js';
 import {
@@ -18,6 +19,8 @@ import {
     preparePack,
 } from './src/util/';
 
+
+const workingDir = path.resolve(__dirname,'working');
 
 function pack(cfg) {
     var o = new Object();
@@ -40,7 +43,9 @@ function pack(cfg) {
     o.configXML = o.appName + '/config.xml';
     o.projectPath = o.svnDir + '/js/lib/';
     o.projectDir = o.svnDir + '/js/lib/' + projectDirName(o.projectSvn);
-    o.libConfigJSPath = o.svnDir + '/js/lib/config/config.js';
+    console.log(o.svnDir);
+    o.libConfigJSPath = path.resolve(__dirname,'working', o.svnDir, 'js/lib/config/config.js');
+    console.log('改变后',o.libConfigJSPath);
     o.platform = cfg.appPlatform;
     o.appBuildType = cfg.appBuildType;
     o.appPackageName = cfg.appPackageName;
@@ -56,8 +61,8 @@ function pack(cfg) {
     o.build = async function () {
         cfg.winston.info("pack enviroment initializing......")
         await preparePack();
-        await emptyDir('working');
-        process.chdir('working');
+        await emptyDir(workingDir);
+        process.chdir(workingDir);
         cfg.winston.info("pack enviroment initialize success")
         cfg.winston.info("create cordova begin")
         await createCordova(o.appName, o.appNameSpace);
@@ -75,6 +80,7 @@ function pack(cfg) {
                 await emptyDir(o.projectDir);
                 await getSvn(o.projectSvn, o.projectDir, o.projectSvnUser, o.projectSvnPassword);
                 cfg.winston.info("svn checkout project files success")
+                console.log(o.libConfigJSPath);
                 await changelibConfigJSPath(o.libConfigJSPath, projectDirName(o.projectSvn));
                 break;
             case 2:
@@ -121,7 +127,7 @@ function pack(cfg) {
             fs.copySync('index.html', dest + '/index.html');
         }
         process.chdir('../..');
-        await emptyDir('working');
+        // await emptyDir(workingDir);
     };
 
     return o;

@@ -2,6 +2,8 @@
 import fs from 'fs-extra';
 
 function changelibConfigJSPath(libConfigJSPath, projectDirName){
+    console.log(process.cwd());
+    console.log(libConfigJSPath);
     return new Promise(function (resolve, reject) {
         var configJs = 'define(["lib/' + projectDirName + '/config"],function(config) {\n' +
             '    return config;\n' +

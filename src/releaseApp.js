@@ -1,9 +1,11 @@
 import fs from 'fs-extra';
+import path from 'path';
 import _ from 'underscore';
 import releaseModel from '../models/release';
 
-function saveData(query){
+function saveData(query, appPackageName){
     return new Promise((resolve, reject) => {
+        console.log('save data');
         releaseModel.find({appPackageName: appPackageName}, function (err, data) {
             if (err) {
                 reject(err);
@@ -30,7 +32,8 @@ function saveData(query){
         });
     });
 }
-function updateHTML(data) {
+function updateHTML(data, serverPath) {
+    console.log('update html');
     data = JSON.stringify(data);
     data = JSON.parse(data);
     //generater-html
@@ -64,7 +67,8 @@ function updateHTML(data) {
             }
             data.url = url;
             const result = compiled(data);
-            fs.outputFile(`yigomobile/public/release/${data.appPackageName}/index.html`, result, (err) => {
+            console.log(path.resolve(__dirname, `../../pack2/yigomobile/public/release/${data.appPackageName}/index.html`));
+            fs.outputFile(path.resolve(__dirname, `../../../pack2/yigomobile/public/release/${data.appPackageName}/index.html`), result, (err) => {
                 if (err) {
                     console.log(err);
                     return err;
@@ -75,11 +79,11 @@ function updateHTML(data) {
     })
 }
 
-function releaseApp(tt) {
-    const { appPackageName, appPlatform, appVersion, appName} = tt;
+async function releaseApp(task) {
+    const { appPackageName, appPlatform, appVersion, appName} = task;
     const serverPath = 'https://dev.bokesoft.com/yigomobile/public/';
-    let androidLink = `${serverPath}apk/${tt.id}/${tt.appName}-${tt.appBuildType}.apk`;
-    let iosLink = `${serverPath}ios/${tt.id}/index.html`;
+    let androidLink = `${serverPath}apk/${task.id}/${task.appName}-${task.appBuildType}.apk`;
+    let iosLink = `${serverPath}ios/${task.id}/index.html`;
     switch (appPlatform) {
         case 'android':
             var query = {
@@ -101,7 +105,7 @@ function releaseApp(tt) {
             break;
     }
 
-    let data = saveData();
-    updateHTML(data);
+    let data = await saveData(query, appPackageName);
+    updateHTML(data, serverPath);
 }
 export default releaseApp;

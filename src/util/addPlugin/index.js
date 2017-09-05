@@ -1,6 +1,11 @@
+import path from 'path';
 import addPluginReal from './addPluginReal';
+
 async function addPlugin(appPlugin) {
-    var pluginPre = '../../plugin/node_modules/';
+    console.log('addPlugin');
+    console.log('cwd',process.cwd());
+    console.log('__dirname', __dirname);
+    var pluginPre = path.resolve(process.cwd(),'../../../local_plugin/');
     // return co(function *() {
     var plugin = appPlugin;
     if (typeof plugin != 'undefined' && plugin.length != 0) {
@@ -19,13 +24,13 @@ async function addPlugin(appPlugin) {
                 if (customPluginReg.test(plugin[i].toString())) {
                     pluginWithoutVariable.push(plugin[i].toString());
                 } else {
-                    pluginWithoutVariable.push(pluginPre + plugin[i].toString());
+                    pluginWithoutVariable.push(`${pluginPre}/${plugin[i].toString()}`);
                 }
             } else {
                 if (customPluginReg.test(plugin[i].toString())) {
                     pluginWithVariable.push(plugin[i].toString());
                 } else {
-                    pluginWithVariable.push(pluginPre + plugin[i].toString());
+                    pluginWithVariable.push(`${pluginPre}/${plugin[i].toString()}`);
                 }
             }
         }

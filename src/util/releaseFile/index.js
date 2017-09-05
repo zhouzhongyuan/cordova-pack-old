@@ -1,4 +1,5 @@
 import fs from 'fs-extra';
+import path from 'path';
 
 function releaseFile(platform, appPlugin,appBuildType, apkLink, ipaLink, appName){
     return new Promise(function (resolve, reject) {
@@ -22,9 +23,18 @@ function releaseFile(platform, appPlugin,appBuildType, apkLink, ipaLink, appName
             default:
                 reject('The platform is not support.') ;
         };
+        console.log('cwd releaseFile');
+        console.log('cwd',process.cwd());
+        console.log('__dirname', __dirname);
+        console.log(src, dest);
+        src = path.resolve(process.cwd(),src);
+        dest = path.resolve(process.cwd(),dest);
+        console.log(src, dest);
         fs.copy(src, dest,function (err, data) {
             if (err) {
-                reject(new Error(err))
+                console.log(err);
+                reject(new Error(err));
+                return;
             }
             resolve(data);
         });

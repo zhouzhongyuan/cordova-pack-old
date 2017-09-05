@@ -1,6 +1,6 @@
+import Client from 'svn-spawn';
 function getSvn(url,dir,username,password) {
     return new Promise(function (resolve, reject) {
-        var Client = require('svn-spawn');
         var client = new Client({
             cwd: dir,
             username: username,
@@ -8,7 +8,8 @@ function getSvn(url,dir,username,password) {
         });
         client.checkout(url,function(err, data) {
             if(err){
-                reject(new Error(err))
+                reject(new Error(err));
+                return;
             }
             resolve(data);
         });

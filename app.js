@@ -1,64 +1,73 @@
-import "babel-polyfill";
 import mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost/koa-app'); // connec
+mongoose.connect('mongodb://localhost/koa-app');
+import path from 'path';
+import fs from 'fs';
+import winston from 'winston';
+import {
+    emptyDir,
+} from './src/util/';
 import pack from './index';
 import findTask from './src/findTask';
 import releaseApp from './src/releaseApp';
-var busy = false;
+let busy = false;
 let buildInterval = null;
 
 async function monitor() {
+    let task = null;
     try {
         if (busy)
             return;
         console.log('searching...');
-        var tt = null;
-        let task = await findTask();
-
+        task = await findTask();
         busy = true;
-        task.status = "accepted";
-        task.save();
-        var winston = require('winston');
-        var filename = 'yigomobile/public/log/';
-        filename += task.id + '.log';
-        var fs = require('fs');
-        var stream = fs.createWriteStream(filename);
-        var file = new (winston.transports.File)({
-            stream: stream, handleExceptions: true,
+        const logFileName = path.resolve(__dirname, '../../pack2/yigomobile/public/log/', `${task.id}.log`);
+        const stream = fs.createWriteStream(logFileName);
+        const file = new (winston.transports.File)({
+            stream: stream,
+            handleExceptions: true,
             humanReadableUnhandledException: true
         });
         task.winston = new (winston.Logger)({transports: [file]});
 
-        task.winston.info('begin to pack ', task.id);
-        tt = task;
-        var packIns = pack(task);
-        await packIns.build();
+        task.status = "accepted";
+        task.save();
+        task.winston.log('info', 'Save task status \"accepted\" success.');
 
-        tt.status = "finished";
-        tt.save();
-        tt.winston.info('pack success');
-        if (tt.appRelease) {
-            await releaseApp(tt, task);
+
+        task.winston.info('begin to pack ', task.id);
+        var packInstance = pack(task);
+        await packInstance.build();
+
+        task.status = "finished";
+        task.save();
+        task.winston.info('pack success');
+        if (task.appRelease) {
+            task.winston.info('release.');
+            await releaseApp(task);
         }
         busy = false;
     } catch (e) {
-        if (tt) {
-            tt.status = "rejected";
-            tt.save();
-            var path = require('path');
-            var appDir = path.dirname(require.main.filename);
-            process.chdir(appDir);
-            //清空working
-            tt.winston.info(`进入文件夹${process.cwd()}`);
-            tt.winston.info('错误如下：');
+        console.log('Catch到了错误：');
+        console.log(e);
+        if (task) {
+            task.status = "rejected";
+            task.save();
+            task.winston.info('错误如下：');
             var err = e.toString();
             console.log(err)
-            tt.winston.info(err);
+            task.winston.info(err);
         }
         busy = false;
 
-
-    };
+    } finally {
+        if(!busy){
+            const entryPoint = path.dirname(require.main.filename);
+            console.log('finally:', entryPoint);
+            process.chdir(entryPoint);
+        }
+        //清空working
+        // await emptyDir('working');
+    }
 }
 
 
