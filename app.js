@@ -53,9 +53,18 @@ async function monitor() {
             task.status = "rejected";
             task.save();
             task.winston.info('错误如下：');
-            var err = e.toString();
-            console.log(err)
+            const err = e.toString();
             task.winston.info(err);
+            console.log('错误开始==============')
+            console.log(e)
+            console.log('==============错误结束')
+            const err65 = /Error\ code\ 65\ for\ command/;
+            if(err.match(err65)){
+                console.log('Get error 65, restarting...');
+                setTimeout(() => {
+                    process.exit(1);
+                },0);
+            }
         }
         busy = false;
 
@@ -64,9 +73,9 @@ async function monitor() {
             const entryPoint = path.dirname(require.main.filename);
             console.log('finally:', entryPoint);
             process.chdir(entryPoint);
+            // 清空working
+            await emptyDir('working');
         }
-        //清空working
-        // await emptyDir('working');
     }
 }
 
