@@ -74,7 +74,7 @@ async function monitor() {
             console.log('finally:', entryPoint);
             process.chdir(entryPoint);
             // 清空working
-            await emptyDir('working');
+            // await emptyDir('working');
         }
     }
 }

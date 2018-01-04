@@ -17,6 +17,7 @@ import {
     projectDirName,
     getSvn,
     preparePack,
+    addBaiduMapScript,
 } from './src/util/';
 
 
@@ -41,6 +42,7 @@ function pack(cfg) {
     o.baseSvnUser = 'zhouzy';
     o.baseSvnPassword = 'zhouzy';
     o.configXML = o.appName + '/config.xml';
+    o.htmlPath = o.appName + '/www/index.html';
     o.projectPath = o.svnDir + '/js/lib/';
     o.projectDir = o.svnDir + '/js/lib/' + projectDirName(o.projectSvn);
     console.log(o.svnDir);
@@ -68,6 +70,7 @@ function pack(cfg) {
         await createCordova(o.appName, o.appNameSpace);
         cfg.winston.info("create cordova success")
         await processCode(o.configXML, o.appVersion, o.appPackageName, o.appName, o.appDescription, o.appIcon, o.androidTargetSdkVersion, o.appBuildType, o.appPlatform);
+        await addBaiduMapScript(o.htmlPath, o.appPlugin);
         var yigoVersion = o.yigoVersion || 1.6;
         switch (yigoVersion) {
             case 1.6:
