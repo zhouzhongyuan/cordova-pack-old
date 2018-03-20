@@ -99,7 +99,7 @@
   },
   "scripts": {
     "build": "rimraf dist/ && node_modules/.bin/babel ./ --out-dir dist/ --ignore ./node_modules,./local_plugin,./working,./.babelrc,./.eslintrc,./gitignore,./package.json,./README.md,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/app.js",
+    "start": "npm run build && node dist/index.js",
     "test": "jest"
   },
   "version": "0.3.5"
